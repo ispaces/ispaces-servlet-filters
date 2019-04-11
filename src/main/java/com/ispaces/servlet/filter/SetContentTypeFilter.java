@@ -16,7 +16,7 @@ import org.apache.logging.log4j.LogManager;
  * This filter can be used to add a "Content-Type" header to any response.
  * The content type can be configured in `web.xml`
  */
-public class ContentTypeFilter implements Filter {
+public class SetContentTypeFilter implements Filter {
 
     private static final Logger logger = LogManager.getLogger();
     private String contentType = null;
