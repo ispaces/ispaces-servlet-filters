@@ -1,0 +1,29 @@
+apply plugin: 'java'
+targetCompatibility = "1.8"
+sourceCompatibility = "1.8"
+
+buildscript {
+
+  repositories {
+    mavenCentral()
+  }
+
+}
+
+repositories {
+    mavenCentral()
+}
+
+List compileList = [
+
+      "javax.servlet:javax.servlet-api:4.0.0"
+    , "org.apache.logging.log4j:log4j-core:${project.property('log4j.version')}"
+    , "org.apache.logging.log4j:log4j-api:${project.property('log4j.version')}"
+    
+]
+
+dependencies {
+    compile compileList
+}
+
+jar.baseName = project.name +'-'+ artifactMajorVersion +'.'+ artifactBuildNumber
