@@ -1,13 +1,17 @@
 apply plugin: 'java'
+apply plugin: 'org.akhikhl.gretty'
 targetCompatibility = "1.8"
 sourceCompatibility = "1.8"
 
 buildscript {
 
-  repositories {
-    mavenCentral()
-  }
+  	repositories {
+    	mavenCentral()
+  	}
 
+  	dependencies {
+        classpath 'org.akhikhl.gretty:gretty:+'
+    }
 }
 
 repositories {
@@ -16,7 +20,7 @@ repositories {
 
 List compileList = [
 
-      "javax.servlet:javax.servlet-api:4.0.0"
+      "javax.servlet:javax.servlet-api:${project.property('servlet.version')}"
     , "org.apache.logging.log4j:log4j-core:${project.property('log4j.version')}"
     , "org.apache.logging.log4j:log4j-api:${project.property('log4j.version')}"
     
@@ -24,6 +28,10 @@ List compileList = [
 
 dependencies {
     compile compileList
+}
+
+gretty {
+    servletContainer = 'jetty9.4'
 }
 
 jar.baseName = project.name +'-'+ artifactMajorVersion +'.'+ artifactBuildNumber

@@ -14,7 +14,8 @@ import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
 /**
- * This filter adds a single header to the response configurable in web.xml using the init params `headerName` and `headerValue`
+ * Adds a single header to the response.
+ * Configurable in web.xml with the init parameters `headerName` and `headerValue`
  */
 
 public class AddHeaderFilter implements Filter {
@@ -37,22 +38,22 @@ public class AddHeaderFilter implements Filter {
         String headerValueParam = filterConfig.getInitParameter("headerValue");
         if (headerValueParam != null) this.headerValue = headerValueParam;
 
-        logger.debug("this.headerName = "+this.headerName);
-        logger.debug("this.headerValue = "+this.headerValue);
+        //logger.debug("this.headerName = "+this.headerName);
+        //logger.debug("this.headerValue = "+this.headerValue);
         logger.debug(this.headerName+" = "+this.headerValue);
     }
 
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws ServletException, IOException {
-        logger.debug("doFilter(servletRequest, servletResponse, chain)");
+        logger.debug("doFilter(servletRequest, servletResponse, filterChain)");
 
         if(
             servletResponse instanceof HttpServletResponse
             && this.headerName != null
         ) {
 
-            logger.debug("servletResponse.addHeader("+this.headerName+", "+this.headerValue+")");
-            ((HttpServletResponse)servletResponse).addHeader(this.headerName, this.headerValue);
+            logger.debug("servletResponse.addHeader('"+this.headerName+"', '"+this.headerValue+"')");
 
+            ((HttpServletResponse)servletResponse).addHeader(this.headerName, this.headerValue);
         }
 
         filterChain.doFilter(servletRequest, servletResponse);
