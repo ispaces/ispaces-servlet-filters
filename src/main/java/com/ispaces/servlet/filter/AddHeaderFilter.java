@@ -2,6 +2,9 @@ package com.ispaces.servlet.filter;
 
 import java.io.IOException;
 
+import javax.servlet.annotation.WebFilter;
+import javax.servlet.annotation.WebInitParam;
+import javax.servlet.DispatcherType;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -18,6 +21,18 @@ import org.apache.logging.log4j.LogManager;
  * Configurable in web.xml with the init parameters `headerName` and `headerValue`
  */
 
+@WebFilter(
+
+    initParams = {
+        
+        @WebInitParam(name = "headerName", value = "header1"),
+        @WebInitParam(name = "headerValue", value = "header-value1")
+
+    }
+    , urlPatterns = { "/headers" }
+    , dispatcherTypes = { DispatcherType.REQUEST }
+    , asyncSupported = false
+)
 public class AddHeaderFilter implements Filter {
 
     private static final Logger logger = LogManager.getLogger();
