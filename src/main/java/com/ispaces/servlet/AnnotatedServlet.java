@@ -14,29 +14,26 @@ import org.apache.logging.log4j.LogManager;
 
 @WebServlet(
 
-    name = "HelloWorldServlet"
+    name = "AnnotatedServlet"
     
     , asyncSupported = true
     
     , urlPatterns = {
-          "/helloworld"
-      	, "/hello-world"
+          "/annotated"
+      	, "/annotated/"
     }
 
 )
-public class HelloWorldServlet extends HttpServlet {
-
+public class AnnotatedServlet extends HttpServlet {
+ 
     private static final Logger logger = LogManager.getLogger();
  
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         logger.debug("doGet(request, response)");
-        logger.debug("doGet("+request+", "+response+")");
  
-        logger.debug(getClass().getName());
-
 		    PrintWriter printWriter = response.getWriter();
 
-		    printWriter.println("Hello World");
+		    printWriter.println(getClass().getName());
  
     }
 

@@ -29,9 +29,11 @@ public class HeadersServlet extends HttpServlet {
   		  PrintWriter printWriter = response.getWriter();
 
         printWriter.println(getClass().getName());
+
         String name = null;
         Enumeration e = request.getHeaderNames();
-        if (e.hasMoreElements()) {
+
+        if (e.hasMoreElements() ) {
             printWriter.println("Request headers:");
             while (e.hasMoreElements()) {
                 name = (String)e.nextElement();
@@ -39,6 +41,18 @@ public class HeadersServlet extends HttpServlet {
             }
         }
    
+        java.util.Collection<String> headerNames = response.getHeaderNames();
+
+        printWriter.println("Response headers:");
+        /*
+        while (!headerNames.isEmpty()) {
+            String headerName = (String) headerNames.toString();
+
+            printWriter.println(headerName + ": " + response.getHeader(headerName));
+        }
+        */
+        for (String headerName : response.getHeaderNames())
+            printWriter.println(headerName + ": " + response.getHeader(headerName));
   	}
 
 }
