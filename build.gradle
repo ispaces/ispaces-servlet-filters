@@ -23,6 +23,7 @@ List compileList = [
       "javax.servlet:javax.servlet-api:${project.property('servlet.version')}"
     , "org.apache.logging.log4j:log4j-core:${project.property('log4j.version')}"
     , "org.apache.logging.log4j:log4j-api:${project.property('log4j.version')}"
+    , "com.atlassian.commonmark:commonmark:0.10.0"
     
 ]
 

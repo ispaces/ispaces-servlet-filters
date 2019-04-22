@@ -20,23 +20,23 @@ import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
 /*
+
 @WebFilter { 
-	description="";               // Descriptive text about the servlet.
-	WebInitParam[] initParams={}, // Used to pass filter config parameters.
-	filterName="",                // Name of the filter.
-	[] servletNames={},           // Array of Servlet names to which this Filter applies.
-	[] urlPatterns={},            // Used for multiple URL and other attributes set (Required).
-	DispatcherType[] dispatcherTypes=   
-     {DispatcherType.REQUEST},  // Look at table below. 
-	boolean asyncSupported=false
-}   // Specifies asynchronous processing or not.
+	String description = "",
+	WebInitParam[] initParams = {},
+	String filterName = "",
+	String[] servletNames = {},
+	String[] urlPatterns = {},
+	DispatcherType[] dispatcherTypes = {DispatcherType.REQUEST},
+	boolean asyncSupported = false
+}
 
 Possible dispatcher types:
-REQUEST: 	Only when the request comes directly from the client. (DEFAULT)
-ASYNC:   	Only when the asynchronous request comes from the client
-FORWARD: 	Only when the request has been forwarded to a component 
-INCLUDE: 	Only when the request is being processed by a component that has been included
-ERROR:   	Only when the request is being processed with the error page mechanism
+	REQUEST: 	A standard HTTP request
+	ASYNC:   	An asynchronous HTTP request
+	FORWARD: 	A request that has been forwarded
+	INCLUDE: 	A request that has been included
+	ERROR:   	A request processed with the error page mechanism
 */
 
 @WebFilter(
@@ -45,7 +45,7 @@ ERROR:   	Only when the request is being processed with the error page mechanism
   		@WebInitParam(name = "param2", value = "value2")
 	}
 	//, servletNames = { "HelloWorldServlet" }
-	, urlPatterns = { "/helloworld" }
+	, urlPatterns = { "/annotated" }
 	, dispatcherTypes = { DispatcherType.REQUEST }
 	, asyncSupported = false
 )
@@ -60,7 +60,11 @@ public class AnnotatedFilter implements Filter {
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
 		logger.debug("doFilter(servletRequest, servletResponse, filterChain)");
 
+		servletResponse.getWriter().println(getClass().getName());
+
 		filterChain.doFilter(servletRequest, servletResponse);
+		
+		servletResponse.getWriter().println(getClass().getName());
 	}
 
 	public void init(FilterConfig filterConfig) throws ServletException {
