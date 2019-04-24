@@ -88,14 +88,17 @@ public class Http404Servlet extends HttpServlet {
 
         logger.debug("request.getDispatcherType() = " + request.getDispatcherType());
 
-        logger.debug("request.getAttribute(javax.servlet.error.exception) = " + request.getAttribute("javax.servlet.error.exception")); // the exception instance that caused the error (or null)
-        logger.debug("request.getAttribute(javax.servlet.error.exception_type) = " + request.getAttribute("javax.servlet.error.exception_type")); // the class name of the exception instance that caused the error (or null)
-        logger.debug("request.getAttribute(javax.servlet.error.message) = " + request.getAttribute("javax.servlet.error.message")); // the error message
-        logger.debug("request.getAttribute(javax.servlet.error.request_uri) = " + request.getAttribute("javax.servlet.error.request_uri")); // the URI of the request that caused the error
-        logger.debug("request.getAttribute(javax.servlet.error.servlet_name) = " + request.getAttribute("javax.servlet.error.servlet_name")); // the name of the servlet that the request was dispatched to
-        logger.debug("request.getAttribute(javax.servlet.error.status_code) = " + request.getAttribute("javax.servlet.error.status_code")); // the HTTP status code of the error
+        logger.debug("javax.servlet.error.exception = " + request.getAttribute("javax.servlet.error.exception")); // the exception instance that caused the error (or null)
+        logger.debug("javax.servlet.error.exception_type = " + request.getAttribute("javax.servlet.error.exception_type")); // the class name of the exception instance that caused the error (or null)
+        logger.debug("javax.servlet.error.message = " + request.getAttribute("javax.servlet.error.message")); // the error message
+        logger.debug("javax.servlet.error.request_uri = " + request.getAttribute("javax.servlet.error.request_uri")); // the URI of the request that caused the error
+        logger.debug("javax.servlet.error.servlet_name = " + request.getAttribute("javax.servlet.error.servlet_name")); // the name of the servlet that the request was dispatched to
+        logger.debug("javax.servlet.error.status_code = " + request.getAttribute("javax.servlet.error.status_code")); // the HTTP status code of the error
 
         try {
+
+            response.setContentType("text/html");
+            //response.setCharacterEncoding("UTF-8");
 
             response.getWriter().println("<!doctype html>");
 

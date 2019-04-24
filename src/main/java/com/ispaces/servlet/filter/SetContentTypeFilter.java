@@ -19,6 +19,7 @@ import org.apache.logging.log4j.LogManager;
 public class SetContentTypeFilter implements Filter {
 
     private static final Logger logger = LogManager.getLogger();
+    
     private String contentType = null;
 
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
