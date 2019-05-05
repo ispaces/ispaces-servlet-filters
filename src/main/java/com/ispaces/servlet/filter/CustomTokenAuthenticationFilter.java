@@ -82,6 +82,14 @@ public class CustomTokenAuthenticationFilter implements Filter {
 
         if(session != null) {
 
+            boolean sessionIsNew = session.isNew(); // returns true if the current request created the session
+            long sessionCreationTime = session.getCreationTime(); // returns the time in milliseconds when the session object was created
+            long sessionLastAccessedTime = session.getLastAccessedTime(); // returns the time in milliseconds of the most recent request in this session
+
+            logger.debug("sessionIsNew = "+ sessionIsNew);
+            logger.debug("sessionCreationTime = "+ sessionCreationTime);
+            logger.debug("sessionLastAccessedTime = "+ sessionLastAccessedTime);
+
             //String csrfToken = (String)session.getAttribute(customTokenName);
             String customSessionToken = (String)session.getAttribute(customTokenName);
             logger.debug("customSessionToken = "+customSessionToken);
